@@ -7,7 +7,7 @@
     "start": "node server.js",
     "client-hbs": "cp node_modules/handlebars/dist/handlebars.runtime.min.js public/build/hbs-runtime.js",
     "templates-hbs": "handlebars -m src/_partials/ -f public/build/hbs-templates.js",
-    "postinstall": "npm run client-hbs && npm run templates-hbs"
+    "postinstall": ""
   },
   "repository": {
     "type": "git",
