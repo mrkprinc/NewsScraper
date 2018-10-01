@@ -16,6 +16,8 @@ module.exports = function(router) {
   router.get('/scrape', function(req, res) {
     request('https://www.theguardian.com/international', function(err, response, body) {
       var $ = cheerio.load(body);
+      // TEMP
+      res.end();
     })
   })
 
