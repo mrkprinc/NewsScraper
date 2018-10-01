@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "client-hbs": "cp node_modules/handlebars/dist/handlebars.runtime.min.js public/build/handlebars.runtime.min.js",
+    "client-hbs": "cp node_modules/handlebars/dist/handlebars.runtime.min.js public/build/",
     "templates-hbs": "handlebars -m src/_partials/ -f public/build/hbs-templates.js",
     "postinstall": "npm run client-hbs && npm run templates-hbs"
   },
