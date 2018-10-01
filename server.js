@@ -11,7 +11,7 @@ const router = express.Router();
 require('./controller/controller.js')(router);
 app.use('/', router);
 
-const hbs = exphbs.create({defaultLayout: 'main', partialsDir: 'views/_partials/'})
+const hbs = exphbs.create({defaultLayout: 'main'})
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
