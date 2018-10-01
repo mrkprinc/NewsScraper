@@ -1,9 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
-const fs = require('file-system');
-
-const db = require("./models");
 
 const PORT = 3000;
 const app = express();
