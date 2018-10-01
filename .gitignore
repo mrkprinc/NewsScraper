@@ -1,1 +1,3 @@
 node_modules
+public/js/hbs-templates.js
+public/js/handlebars.runtime.min.js

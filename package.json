@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "postinstall": "gulp"
+    "postinstall": "cp node_modules/handlebars/dist/handlebars.runtime.min.js public/js/handlebars.runtime.min.js"
   },
   "repository": {
     "type": "git",
@@ -24,7 +24,7 @@
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
-    "gulp": "^3.9.1",
+    "file-system": "^2.2.2",
     "mongoose": "^5.3.0",
     "request": "^2.88.0"
   }
