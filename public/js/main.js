@@ -1,4 +1,3 @@
 $(document).ready(function() {
-  console.log(Handlebars.templates['article']);
-  document.write(Handlebars.templates['article']({}))
+  const articleTemplate = Handlebars.templates['article'];
 })

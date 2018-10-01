@@ -4,9 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "postinstall": "cp node_modules/handlebars/dist/handlebars.runtime.min.js public/js/handlebars.runtime.min.js && handlebars views/_partials/article.handlebars -f public/js/hbs-templates.js"
+    "postinstall": "cp node_modules/handlebars/dist/handlebars.runtime.min.js public/js/handlebars.runtime.min.js && handlebars -m views/_partials/ -f public/js/hbs-templates.js"
   },
   "repository": {
     "type": "git",
