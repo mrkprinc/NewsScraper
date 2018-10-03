@@ -1,7 +1,9 @@
 $dark-red: #cc0000;
 $pink: #ffecef;
-$white: #fcfcfc;
 $black: #222222;
+$dark-grey: #4c4c4c;
+$light-grey: #e5e5e5;
+$white: #fcfcfc;
 $standard-margin: 16px;
 $standard-radius: 10px;
 $standard-border: 2px solid;
@@ -47,8 +49,11 @@ main {
   }
 
   #articles-section {
-    .article {
+    .new-article {
       @include component($dark-red, $pink);
+    }
+    .article {
+      @include component($dark-grey, $light-grey);
     }
   }
 }

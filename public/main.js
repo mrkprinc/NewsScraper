@@ -12,7 +12,6 @@ $(document).ready(function() {
       // TEMP
       $('#articles-section').append(`<p class='article'>${result.headline}</p>`);
     })
-
     scrapeNew();
   })
 
@@ -28,11 +27,11 @@ $(document).ready(function() {
         }
       })
       if(newArticles.length) {
-        $.post('/scrape', newArticles, (err) => {
-          if(err) return console.log(err);
-          console.log('post successful');
+        $.post('/scrape', {articles: newArticles}, (err, result) => {
+          if(err) console.log(err);
         })
         newArticles.forEach(article => {
+          // TEMP
           $('#articles-section').prepend(`<p class='article'>*NEW ${article.headline}</p>`);
         })
       } else console.log('no new articles');

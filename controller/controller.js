@@ -26,19 +26,21 @@ module.exports = function(router) {
       let $ = cheerio.load(body);
       let results = [];
       $('#headlines').find('a.fc-item__link').each((i, element) => {
-        let result = {
-          url: $(element).attr('href'),
-          topic: $(element).children('span.fc-item__kicker').text(),
-          headline: $(element).find('span.js-headline-text').text()
+        if($(element).attr('href')) {
+          let result = {
+            url: $(element).attr('href'),
+            topic: $(element).children('span.fc-item__kicker').text(),
+            headline: $(element).find('span.js-headline-text').text()
+          }
+          results.push(result);
         }
-        results.push(result);
       })
       res.json(results);
     })
   })
 
   router.post('/scrape', (req, res) => {
-    db.Article.insertMany(req.body).then(dbArticles => console.log(dbArticles));
+    db.Article.insertMany(req.body.articles).then(dbArticles => console.log('db insert successful'));
     res.end();
   })
 
