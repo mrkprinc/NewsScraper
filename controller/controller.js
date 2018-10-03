@@ -15,7 +15,13 @@ module.exports = function(router) {
     res.render('index', {});
   })
 
-  router.get('/scrape', function(req, res) {
+  router.get('/recent-articles', (req, res) => {
+    db.Article.find().sort({createdAt: -1}).limit(35).then(dbArticles => {
+      res.json(dbArticles);
+    })
+  })
+
+  router.get('/scrape', (req, res) => {
     request('https://www.theguardian.com/international', (err, response, body) => {
       let $ = cheerio.load(body);
       $('#headlines').find('a.fc-item__link').each((i, element) => {
