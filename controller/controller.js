@@ -24,16 +24,22 @@ module.exports = function(router) {
   router.get('/scrape', (req, res) => {
     request('https://www.theguardian.com/international', (err, response, body) => {
       let $ = cheerio.load(body);
+      let results = [];
       $('#headlines').find('a.fc-item__link').each((i, element) => {
         let result = {
           url: $(element).attr('href'),
           topic: $(element).children('span.fc-item__kicker').text(),
           headline: $(element).find('span.js-headline-text').text()
         }
-        db.Article.create(result).then(dbArticle => console.log(dbArticle));
+        results.push(result);
       })
-      res.end();
+      res.json(results);
     })
+  })
+
+  router.post('/scrape', (req, res) => {
+    db.Article.insertMany(req.body).then(dbArticles => console.log(dbArticles));
+    res.end();
   })
 
 }
