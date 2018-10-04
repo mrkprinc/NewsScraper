@@ -1,6 +1,6 @@
 $dark-red: #cc0000;
 $pink: #ffecef;
-$black: #222222;
+$black: #333333;
 $dark-grey: #4c4c4c;
 $light-grey: #e5e5e5;
 $white: #fcfcfc;
@@ -29,6 +29,10 @@ $standard-border: 2px solid;
 body {
   background-color: $white;
   font-size: $standard-margin;
+  font-family: 'News Cycle', Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  letter-spacing: 0.2px;
+  color: $black;
 }
 
 main {

@@ -1,5 +1,6 @@
 $(document).ready(function() {
   const articleTemplate = Handlebars.templates['article'];
+  const newArticleTemplate = Handlebars.templates['new-article'];
   let urls = {};
 
   $.ajax({
@@ -10,7 +11,7 @@ $(document).ready(function() {
     response.forEach(result => {
       urls[result.url] = true;
       // TEMP
-      $('#articles-section').append(`<p class='article'>${result.headline}</p>`);
+      $('#articles-section').append(articleTemplate(result));
     })
     scrapeNew();
   })
@@ -32,7 +33,7 @@ $(document).ready(function() {
         })
         newArticles.forEach(article => {
           // TEMP
-          $('#articles-section').prepend(`<p class='article'>*NEW ${article.headline}</p>`);
+          $('#articles-section').prepend(newArticleTemplate(article));
         })
       } else console.log('no new articles');
     })
