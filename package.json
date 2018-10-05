@@ -12,7 +12,7 @@
     "templates-hbs": "handlebars -m src/_partials/ -f public/build/hbs-templates.js",
     "sass-compile": "node-sass src/styles.scss public/build/styles.css",
     "dev": "npm run templates-hbs && npm run sass-compile && node server.js",
-    "postinstall": "npm run client-hbs && npm run templates-hbs"
+    "postinstall": "npm run client-hbs && npm run templates-hbs && npm run sass-compile"
   },
   "repository": {
     "type": "git",
