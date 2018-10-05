@@ -14,7 +14,7 @@ const hbs = exphbs.create({defaultLayout: 'main'})
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-app.use(express.static('public'));
+app.use(express.static('public/'));
 
 app.listen(PORT, function() {
   console.log("Ready at localhost:" + PORT);

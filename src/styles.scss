@@ -21,8 +21,14 @@ $standard-border: 2px solid;
   justify-content: center;
 }
 
+%flex-row-between {
+  display: flex;
+  justify-content: space-between;
+}
+
 %flex-center {
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
@@ -33,6 +39,12 @@ body {
   font-weight: bold;
   letter-spacing: 0.2px;
   color: $black;
+}
+
+header {
+  text-align: center;
+  font-size: 24px;
+  text-decoration: underline;
 }
 
 main {
@@ -53,12 +65,23 @@ main {
   }
 
   #articles-section {
-    .new-article {
-      @include component($dark-red, $pink);
-    }
     .article {
       @include component($dark-grey, $light-grey);
+      @extend %flex-row-between;
+    }
+    .new-article {
+      @include component($dark-red, $pink);
+      @extend %flex-row-between;
+    }
+    .note-button {
+      margin-left: $standard-radius;
+      cursor: pointer;
     }
   }
+}
+
+.msg {
+  color: $dark-red;
+  margin-right: $standard-radius;
 }
 
