@@ -18,7 +18,13 @@ module.exports = function(router) {
   router.get('/recent-articles', (req, res) => {
     db.Article.find().sort({createdAt: -1}).limit(35).then(dbArticles => {
       res.json(dbArticles);
-    })
+    }).catch(err => res.json(err));
+  })
+
+  router.get('/notes/:id', (req, res) => {
+    db.Article.findOne({_id: req.params.id}).populate('Note').then(dbArticle => {
+      res.json(dbArticle);
+    }).catch(err => res.json(err));
   })
 
   router.get('/scrape', (req, res) => {

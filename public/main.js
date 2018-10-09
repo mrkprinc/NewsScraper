@@ -1,6 +1,7 @@
 $(document).ready(function() {
   const articleTemplate = Handlebars.templates['article'];
   const newArticleTemplate = Handlebars.templates['new-article'];
+  const notesTemplate = Handlebars.templates['notes'];
   let urls = {};
 
   $.ajax({
@@ -13,6 +14,10 @@ $(document).ready(function() {
       $('#old-articles').append(articleTemplate(result));
     })
     scrapeNew();
+  })
+
+  $('#articles-section').on('click', '.note-button', function() {
+    getNotes($(this).attr('data-id'));
   })
 
   function scrapeNew() {
@@ -34,6 +39,15 @@ $(document).ready(function() {
           })
         })
       } else console.log('no new articles');
+    })
+  }
+
+  function getNotes(id) {
+    $.ajax({
+      method: 'GET',
+      url: `/notes/${id}`
+    }).then(response => {
+      $('#notes').html(notesTemplate({article: response}));
     })
   }
 })
