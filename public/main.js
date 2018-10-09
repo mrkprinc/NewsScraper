@@ -10,7 +10,6 @@ $(document).ready(function() {
     $('#old-articles').empty();
     response.forEach(result => {
       urls[result.url] = true;
-      // TEMP
       $('#old-articles').append(articleTemplate(result));
     })
     scrapeNew();
@@ -29,11 +28,10 @@ $(document).ready(function() {
       })
       $('#new-articles').empty();
       if(newArticles.length) {
-        $.post('/scrape', {articles: newArticles}, (err, result) => {
-          if(err) console.log(err);
-        })
-        newArticles.forEach(article => {
-          $('#new-articles').append(newArticleTemplate(article));
+        $.post('/scrape', {articles: newArticles}, result => {
+          result.forEach(article => {
+            $('#new-articles').append(newArticleTemplate(article));
+          })
         })
       } else console.log('no new articles');
     })

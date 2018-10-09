@@ -40,8 +40,9 @@ module.exports = function(router) {
   })
 
   router.post('/scrape', (req, res) => {
-    db.Article.insertMany(req.body.articles).then(dbArticles => console.log('db insert complete'));
-    res.end();
+    db.Article.insertMany(req.body.articles).then(dbArticles => {
+      res.json(dbArticles);
+    })
   })
 
 }
