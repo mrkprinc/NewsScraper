@@ -7,11 +7,11 @@ $(document).ready(function() {
     method: 'GET',
     url: '/recent-articles'
   }).then(response => {
-    $('#articles-section').empty();
+    $('#old-articles').empty();
     response.forEach(result => {
       urls[result.url] = true;
       // TEMP
-      $('#articles-section').append(articleTemplate(result));
+      $('#old-articles').append(articleTemplate(result));
     })
     scrapeNew();
   })
@@ -27,13 +27,13 @@ $(document).ready(function() {
           newArticles.push(result);
         }
       })
+      $('#new-articles').empty();
       if(newArticles.length) {
         $.post('/scrape', {articles: newArticles}, (err, result) => {
           if(err) console.log(err);
         })
         newArticles.forEach(article => {
-          // TEMP
-          $('#articles-section').prepend(newArticleTemplate(article));
+          $('#new-articles').append(newArticleTemplate(article));
         })
       } else console.log('no new articles');
     })

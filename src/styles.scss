@@ -1,5 +1,6 @@
 $dark-red: #cc0000;
 $pink: #ffecef;
+$yellow: yellow;
 $black: #333333;
 $dark-grey: #4c4c4c;
 $light-grey: #e5e5e5;
@@ -28,16 +29,22 @@ $standard-border: 2px solid;
 
 %flex-center {
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
+  @extend %flex-row;
+  @extend %flex-center;
   background-color: $white;
   font-size: $standard-margin;
   font-family: 'News Cycle', Arial, Helvetica, sans-serif;
   font-weight: bold;
   letter-spacing: 0.2px;
+  line-height: 1.1;
   color: $black;
 }
 
@@ -51,16 +58,20 @@ main {
   @extend %flex-row;
   width: 100%;
   max-width: 960px;
-  margin: 0 auto;
+  height: 75%;
+  margin: $standard-margin auto;
 
   section {
-    margin: $standard-margin;
+    height: 100%;
+    overflow: scroll;
+    padding: $standard-radius;
+    border: $standard-border $light-grey;
   }
 
   #notes-section {
     border-left: $standard-border $black;
     .note {
-      
+      @include component($yellow, $yellow);
     }
   }
 
@@ -73,11 +84,24 @@ main {
       @include component($dark-red, $pink);
       @extend %flex-row-between;
     }
+    .content {
+      display: inherit;
+    }
     .note-button {
       margin-left: $standard-radius;
       cursor: pointer;
     }
   }
+}
+
+h2 {
+  display: inline-block;
+  padding: $standard-radius;
+}
+
+.load-msg {
+  @extend h2;
+  color: $dark-red;
 }
 
 .msg {
