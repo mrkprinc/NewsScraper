@@ -28,6 +28,7 @@ $(document).ready(function() {
       let newArticles = [];
       response.forEach(result => {
         if(!urls[result.url]) {
+          result.createdAt = Date.now();
           newArticles.push(result);
         }
       })

@@ -3,9 +3,11 @@ const cheerio = require('cheerio');
 const request = require('request');
 
 // CONFIG
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/mongoHeadlines";
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
+
+console.log('mongo: ', MONGODB_URI);
 
 const db = require("../models");
 
@@ -16,7 +18,7 @@ module.exports = function(router) {
   })
 
   router.get('/recent-articles', (req, res) => {
-    db.Article.find().sort({createdAt: -1}).limit(35).then(dbArticles => {
+    db.Article.find().sort({createdAt: -1}).limit(15).then(dbArticles => {
       res.json(dbArticles);
     }).catch(err => res.json(err));
   })

@@ -1,4 +1,14 @@
-{{#unless notes}}
+<div class='note-input'>
+  Add a new note here
+</div>
+
+{{#if notes}}
+  {{#each notes}}
+    <div class='note'>
+      this is a note
+    </div>
+  {{/each}}
+{{else}}
   <span class='load-msg'>This article has no notes.</span>
-{{/unless}}
+{{/if}}
 
