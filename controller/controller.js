@@ -3,7 +3,7 @@ const cheerio = require('cheerio');
 const request = require('request');
 
 // CONFIG
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/mongoHeadlines";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
 
@@ -24,9 +24,16 @@ module.exports = function(router) {
   })
 
   router.get('/notes/:id', (req, res) => {
-    db.Article.findOne({_id: req.params.id}).populate('Note').then(dbArticle => {
+    db.Article.findOne({_id: req.params.id}).populate('note').then(dbArticle => {
       res.json(dbArticle);
     }).catch(err => res.json(err));
+  })
+
+  router.post('/notes', (req, res) => {
+    db.Note.create(req.body.body).then(dbNote => {
+      db.Article.findOneAndUpdate({_id: req.body.article}, {$push: {note: dbNote._id}}, {new: true})
+        .then(result => res.json(dbNote))
+    })
   })
 
   router.get('/scrape', (req, res) => {
@@ -38,7 +45,8 @@ module.exports = function(router) {
           let result = {
             url: $(element).attr('href'),
             topic: $(element).children('span.fc-item__kicker').text(),
-            headline: $(element).find('span.js-headline-text').text()
+            headline: $(element).find('span.js-headline-text').text(),
+            note: []
           }
           results.push(result);
         }
@@ -50,7 +58,7 @@ module.exports = function(router) {
   router.post('/scrape', (req, res) => {
     db.Article.insertMany(req.body.articles).then(dbArticles => {
       res.json(dbArticles);
-    })
+    }).catch(err => console.log(err));
   })
 
 }

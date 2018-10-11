@@ -1,11 +1,14 @@
-<div class='note-input'>
-  Add a new note here
+<div class='note-input' data-articleId={{_id}}>
+  <textarea rows='4' placeholder='Add text here' maxlength="250">
+
+  </textarea>
+  <button class='addNote-button'>Add Note</button>
 </div>
 
-{{#if notes}}
-  {{#each notes}}
+{{#if note}}
+  {{#each note}}
     <div class='note'>
-      this is a note
+      {{body}}
     </div>
   {{/each}}
 {{else}}

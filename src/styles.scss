@@ -1,6 +1,6 @@
 $dark-red: #cc0000;
 $pink: #ffecef;
-$yellow: yellow;
+$yellow: #ffff7f;
 $black: #333333;
 $dark-grey: #4c4c4c;
 $light-grey: #e5e5e5;
@@ -72,6 +72,15 @@ main {
   #notes-section {
     width: 40%;
     border-left: $standard-border $black;
+    .note-input {
+      padding: $standard-radius;
+      display: flex;
+      flex-direction: column;
+      textarea, button {
+        font-family: inherit;
+        font-size: inherit;
+      }
+    }
     .note {
       @include component($yellow, $yellow);
     }

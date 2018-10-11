@@ -20,6 +20,19 @@ $(document).ready(function() {
     getNotes($(this).attr('data-id'));
   })
 
+  $('#notes-section').on('click', '.addNote-button', function() {
+    let text = $(this).siblings('textarea').val().trim();
+    let articleId = $(this).parent().attr('data-articleId');
+    if(text) {
+      $.post('/notes', {body: {body: text}, article: articleId}, result => {
+        if(result._id) {
+          getNotes(articleId);
+        }
+      })
+    }
+
+  })
+
   function scrapeNew() {
     $.ajax({
       method: 'GET',
@@ -48,7 +61,7 @@ $(document).ready(function() {
       method: 'GET',
       url: `/notes/${id}`
     }).then(response => {
-      $('#notes').html(notesTemplate({article: response}));
+      $('#notes').html(notesTemplate(response));
     })
   }
 })
