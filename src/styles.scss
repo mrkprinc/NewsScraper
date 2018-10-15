@@ -58,7 +58,7 @@ main {
   @extend %flex-row;
   width: 100%;
   max-width: 960px;
-  height: 75%;
+  height: 85%;
   margin: $standard-margin auto;
 
   section {
@@ -121,3 +121,25 @@ h2 {
   margin-right: $standard-radius;
 }
 
+@media only screen and (max-width: 600px) {
+  header {
+    display: none;
+  }
+
+  main {
+    flex-direction: column;
+    align-items: center;
+    height: 95%;
+
+    #articles-section {
+      width: 95%;
+      height: 60%;
+    }
+
+    #notes-section {
+      width: 95%;
+      height: 40%;
+      border-left: $standard-border $light-grey;
+    }
+  }
+}
